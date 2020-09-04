@@ -1,15 +1,16 @@
 {
   "name": "my-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "webpack practice project",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Andy Chen",
+  "email": "chenyangpoppin@gmail.com",
+  "license": "MIT",
   "devDependencies": {
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
