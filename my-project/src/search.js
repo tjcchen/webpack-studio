@@ -1,4 +1,4 @@
-import promise from "./promise.js";
+import promise from './promise.js';
 
 promise.then((msg) => {
   console.log('This is in the then ' + msg);

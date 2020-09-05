@@ -17,7 +17,8 @@ module.exports = {
   mode: 'production',
   entry: {
     index: './src/index.js',
-    search: './src/search.js'
+    search: './src/search.js',
+    react: './src/react.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),
