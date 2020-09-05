@@ -22,6 +22,14 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js'  // a name placeholder is needed when output multiple files
+  },
+  module: {
+    rules: [
+      {
+        test: /.js$/,
+        use: 'babel-loader'  // Utilize babel loader in webpack
+      }
+    ]
   }
 };
 
