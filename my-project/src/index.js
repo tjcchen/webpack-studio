@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { print } from './print';
 
 function component() {
   const element = document.createElement('div');
@@ -10,3 +11,5 @@ function component() {
 }
 
 document.body.appendChild(component());
+
+document.write(print());  // message from print.js
