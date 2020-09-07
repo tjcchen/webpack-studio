@@ -29,6 +29,13 @@ module.exports = {
       {
         test: /.js$/,
         use: 'babel-loader'  // Utilize babel loader in webpack
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',  // the sequence of loaders array is important
+          'css-loader'
+        ]
       }
     ]
   }
