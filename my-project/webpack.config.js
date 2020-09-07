@@ -28,13 +28,21 @@ module.exports = {
     rules: [
       {
         test: /.js$/,
-        use: 'babel-loader'  // Utilize babel loader in webpack
+        use: 'babel-loader'// Utilize babel loader in webpack
       },
       {
         test: /\.css$/,
+        use: [             // npm i style-loader css-loader -D
+          'style-loader',  // the sequence of loaders array matters
+          'css-loader'     // the rule is to load the loaders from right to left, namely css-loader first, then style-loader
+        ]
+      },
+      {
+        test: /\.less/,
         use: [
-          'style-loader',  // the sequence of loaders array is important
-          'css-loader'
+          'style-loader',
+          'css-loader',
+          'less-loader'    // npm i less less-loader -D
         ]
       }
     ]
