@@ -8,6 +8,7 @@ import logo from './images/webpack.svg';
 
 class ReactFooter extends React.Component{
   // please note the logo path will be relative path, relative to current .html file
+  // url-loader can make image to base64 format, while file-loader cannot, it is the difference between them
   render() {
     return <div className="footer-text">
       <p>React Footer</p>
