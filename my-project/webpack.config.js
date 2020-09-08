@@ -45,11 +45,22 @@ module.exports = {
           'less-loader'    // npm i less less-loader -D
         ]
       },
-      {
+      // {
+      //   test: /\.(jpg|gif|svg|png|jpeg)$/,
+      //   use: 'file-loader' // npm i file-loader -D
+      // },
+      {  // url-loader can be used to load image and font resources too, it can also add base64 manipulation when resource size is small
         test: /\.(jpg|gif|svg|png|jpeg)$/,
-        use: 'file-loader' // npm i file-loader -D
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10240 // 10240bit = 10k
+            }
+          }
+        ]
       },
-      {                    // font resources can be downloaded from https://fonts.google.com/
+      {  // font resources can be downloaded from https://fonts.google.com/
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: 'file-loader' // npm i file-loader -D
       }
