@@ -15,6 +15,12 @@ const path = require('path');
 // Multiple output files
 module.exports = {
   mode: 'production',
+  watch: true,               // default value is false
+  watchOptions: {            // watchOptions takes effect only when watch is true
+    ignored: /node_modules/, // watch ignored files or folders, regular expression is supported
+    aggregateTimeout: 300,   // catch wait time
+    poll: 1000               // polling to check file changes
+  },
   entry: {
     index: './src/index.js',
     search: './src/search.js',
