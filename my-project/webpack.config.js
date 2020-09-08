@@ -1,6 +1,7 @@
 "use strict";
 
-const path = require('path');
+const path    = require('path');
+const webpack = require('webpack');
 
 // Single entry point file
 // module.exports = {
@@ -14,7 +15,7 @@ const path = require('path');
 
 // Multiple output files
 module.exports = {
-  mode: 'production',
+  mode: 'development',     // production, development, none
   watch: true,               // default value is false
   watchOptions: {            // watchOptions takes effect only when watch is true
     ignored: /node_modules/, // watch ignored files or folders, regular expression is supported
@@ -71,6 +72,13 @@ module.exports = {
         use: 'file-loader' // npm i file-loader -D
       }
     ]
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()  // WDS needs to work together with HotModuleReplacementPlugin to take effect
+  ],
+  devServer: {
+    contentBase: './dist', // serving directory
+    hot: true              // open live reloading option
   }
 };
 

@@ -11,7 +11,7 @@ class ReactFooter extends React.Component{
   // url-loader can make image to base64 format, while file-loader cannot, it is the difference between them
   render() {
     return <div className="footer-text">
-      <p>React Footer Content Inner</p>
+      <p>React Footer Content</p>
       <img src={ logo } width="180px" height="120px" />
     </div>;
   }
