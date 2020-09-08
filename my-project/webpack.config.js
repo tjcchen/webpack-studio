@@ -55,7 +55,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10240 // 10240bit = 10k
+              limit: 10240 // 10240 bit = 10k
             }
           }
         ]
