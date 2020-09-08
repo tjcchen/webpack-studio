@@ -27,18 +27,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.js$/,
+        test: /\.js$/,
         use: 'babel-loader'// utilize babel-loader in webpack
       },
       {
-        test: /.css$/,
+        test: /\.css$/,
         use: [             // npm i style-loader css-loader -D
           'style-loader',  // the sequence of loaders array matters
           'css-loader'     // the rule is to load the loaders from right to left, namely css-loader first, then style-loader
         ]
       },
       {
-        test: /.less$/,
+        test: /\.less$/,
         use: [
           'style-loader',
           'css-loader',
@@ -46,7 +46,11 @@ module.exports = {
         ]
       },
       {
-        test: /.(jpg|gif|svg|png|jpeg)$/,
+        test: /\.(jpg|gif|svg|png|jpeg)$/,
+        use: 'file-loader' // npm i file-loader -D
+      },
+      {                    // font resources can be downloaded from https://fonts.google.com/
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: 'file-loader' // npm i file-loader -D
       }
     ]
