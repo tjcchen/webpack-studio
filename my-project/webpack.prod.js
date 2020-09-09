@@ -1,6 +1,7 @@
 "use strict";
 
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'production',
@@ -22,14 +23,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: [            
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       },
       {
         test: /\.less$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'less-loader'
         ]
@@ -57,6 +58,12 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    // css resources need to use MiniCssExtractPlugin and [contenthash], while removing style-loader
+    new MiniCssExtractPlugin({
+      filename: '[name]_[contenthash:8].css'
+    })
+  ]
 };
 
