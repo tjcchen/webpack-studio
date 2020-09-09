@@ -12,7 +12,7 @@ class ReactFooter extends React.Component{
   render() {
     return <div className="footer-text">
       <p>React Footer Content</p>
-      <img src={ logo } width="180px" height="120px" />
+      <img src={ logo } width="200px" height="120px" />
     </div>;
   }
 };

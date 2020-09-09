@@ -19,7 +19,7 @@ module.exports = {
   watch: true,               // default value is false
   watchOptions: {            // watchOptions takes effect only when watch is true
     ignored: /node_modules/, // watch ignored files or folders, regular expression is supported
-    aggregateTimeout: 300,   // catch wait time
+    aggregateTimeout: 300,   // cache wait time
     poll: 1000               // polling to check file changes
   },
   entry: {
@@ -76,7 +76,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()  // WDS needs to work together with HotModuleReplacementPlugin to take effect
   ],
-  devServer: {
+  devServer: {             // npm i webpack-dev-server -D
     contentBase: './dist', // serving directory
     hot: true              // open live reloading option
   }
