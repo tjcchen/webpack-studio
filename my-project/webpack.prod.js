@@ -3,6 +3,7 @@
 const path                    = require('path');
 const MiniCssExtractPlugin    = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const HtmlWebpackPlugin       = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -69,6 +70,36 @@ module.exports = {
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano')
+    }),
+    // html compressor - index.html
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/index.html'),  // entry point file
+      filename: 'index.html',  // output file
+      chunks: ['index', 'search'],  // entry name chunks
+      inject: true,
+      minify: {
+        html5: true,
+        collapseWhitespace: true,
+        preserveLineBreaks: false,
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: false
+      }
+    }),
+    // html compressor - react.html
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/react.html'),
+      filename: 'react.html',
+      chunks: ['react'],
+      inject: true,
+      minify: {
+        html5: true,
+        collapseWhitespace: true,
+        preserveLineBreaks: false,
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: false
+      }
     })
   ]
 };

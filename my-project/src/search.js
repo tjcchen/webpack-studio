@@ -7,4 +7,4 @@ promise.then((msg) => {
 });
 
 // Search.js message to html page
-document.write('<p>search.js: Webpack Search Page</p>');
+document.write('<p>search.js: Webpack Search Page Content</p>');
