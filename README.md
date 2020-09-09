@@ -2,7 +2,7 @@
 Webpack configuration practice project.
 
 # Documentation
-Webpack: https://webpack.js.org/guides/getting-started/
+webpack: https://webpack.js.org/guides/getting-started/
 
 # Contact
 chenyangpoppin@gmail.com
