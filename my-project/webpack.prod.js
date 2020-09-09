@@ -1,7 +1,8 @@
 "use strict";
 
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path                    = require('path');
+const MiniCssExtractPlugin    = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -63,6 +64,11 @@ module.exports = {
     // css resources need to use MiniCssExtractPlugin and [contenthash], while removing style-loader
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
+    }),
+    // css compressor
+    new OptimizeCSSAssetsPlugin({
+      assetNameRegExp: /.css$/g,
+      cssProcessor: require('cssnano')
     })
   ]
 };
