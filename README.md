@@ -1,5 +1,8 @@
-# Webpack-Studio
-Webpack
+# webpack-studio
+Webpack configuration practice project.
+
+# Documentation
+webpack: https://webpack.js.org/guides/getting-started/
 
 # Contact
 chenyangpoppin@gmail.com
