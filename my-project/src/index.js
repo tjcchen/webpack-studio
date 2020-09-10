@@ -4,7 +4,7 @@ import { print } from './print';
 function component() {
   const element = document.createElement('div');
 
-  // Utilizes lodash convenience method
+  // Utilizes lodash convenience method 'join'
   element.innerHTML = _.join(['index.js', ':', 'hello', 'webpack', 2020, 'fall'], ' ');
 
   return element;

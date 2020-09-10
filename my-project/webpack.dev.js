@@ -1,7 +1,8 @@
 "use strict";
 
-const path    = require('path');
-const webpack = require('webpack');
+const path                   = require('path');
+const webpack                = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // Single entry point file
 // module.exports = {
@@ -74,7 +75,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()  // WDS needs to work together with HotModuleReplacementPlugin to take effect
+    new webpack.HotModuleReplacementPlugin(),  // WDS needs to work together with HotModuleReplacementPlugin to take effect
+    new CleanWebpackPlugin()                   // clear /dist folder before bundling
   ],
   devServer: {             // npm i webpack-dev-server -D
     contentBase: './dist', // serving directory
