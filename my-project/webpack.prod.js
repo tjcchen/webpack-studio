@@ -41,7 +41,7 @@ module.exports = {
             options: {
               plugins: () => [  // please note this place [ xxx ]
                 require('autoprefixer')({
-                  browsers: ['last 2 version', '>1%', 'ios 7']
+                  overrideBrowserslist: ['last 2 version', '>1%', 'ios 7']
                 })
               ]
             }
