@@ -36,16 +36,16 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'less-loader',
-          {  // apply autoprefixer to auto adding modern browers' CSS3 prefix
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [  // please note this place [ xxx ]
-                require('autoprefixer')({
-                  overrideBrowserslist: ['last 2 version', '>1%', 'ios 7']
-                })
-              ]
-            }
-          }
+          // {  // apply autoprefixer to auto adding modern browers' CSS3 prefix
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     plugins: () => [  // please note this place [ xxx ]
+          //       require('autoprefixer')({
+          //         overrideBrowserslist: ['last 2 version', '>1%', 'ios 7']
+          //       })
+          //     ]
+          //   }
+          // }
         ]
       },
       {  // images and fonts can use the same file-loader [hash] configuration since they are both file resources
