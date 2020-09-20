@@ -34,16 +34,32 @@ module.exports = {
         test: /\.less$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          // https://blog.jakoblind.no/postcss-webpack/
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
           'less-loader',
+          'postcss-loader',
           // {  // apply autoprefixer to auto adding modern browers' CSS3 prefix
           //   loader: 'postcss-loader',
           //   options: {
-          //     plugins: () => [  // please note this place [ xxx ]
-          //       require('autoprefixer')({
-          //         overrideBrowserslist: ['last 2 version', '>1%', 'ios 7']
-          //       })
-          //     ]
+          //     postcssOptions: {
+          //       plugins: () => [  // please note this place [ xxx ]
+          //         [
+          //           'autoprefixer',
+          //           {
+          //             overrideBrowserslist: ['last 2 version', '>1%', 'ios 7']
+          //           }
+          //         ]
+
+          //         // require('autoprefixer')({
+          //         //   overrideBrowserslist: ['last 2 version', '>1%', 'ios 7']
+          //         // })
+          //       ]
+          //     } 
           //   }
           // }
         ]

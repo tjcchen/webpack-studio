@@ -13,6 +13,12 @@
   "author": "Andy Chen",
   "email": "chenyangpoppin@gmail.com",
   "license": "MIT",
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "maintained node versions"
+  ],
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
