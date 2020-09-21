@@ -44,6 +44,13 @@ module.exports = {
           'less-loader',
           // apply autoprefixer to auto adding modern browers' CSS3 prefix in postcss.config.js
           'postcss-loader',
+          {
+            loader: 'px2rem-loader',
+            options: {
+              remUnit: 75,  // 1rem = 75px
+              remPrecision: 8  // decimal point precision
+            }
+          }
         ]
       },
       {  // images and fonts can use the same file-loader [hash] configuration since they are both file resources
