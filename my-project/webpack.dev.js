@@ -29,8 +29,8 @@ module.exports = {
   },
   entry: {
     index: './src/index/index.js',
-    search: './src/index/search.js',
-    react: './src/react/react.js'
+    search: './src/search/index.js',
+    react: './src/react/index.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -88,10 +88,26 @@ module.exports = {
         preset: ['default', { discardComments: { removeAll: true } }],
       },
     }),
+    // index.html
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/index/index.html'),  // entry point file
       filename: 'index.html',  // output file
-      chunks: ['index', 'search'],  // entry name chunks
+      chunks: ['index'],  // entry name chunks
+      inject: true,
+      minify: {
+        html5: true,
+        collapseWhitespace: true,
+        preserveLineBreaks: false,
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: true
+      }
+    }),
+    // search.html
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/search/index.html'),  // entry point file
+      filename: 'search.html',  // output file
+      chunks: ['search'],  // entry name chunks
       inject: true,
       minify: {
         html5: true,

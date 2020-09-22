@@ -1,19 +1,60 @@
 "use strict";
 
 const path                       = require('path');
+const glob                       = require('glob');
 const MiniCssExtractPlugin       = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin    = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin          = require('html-webpack-plugin');
 const { CleanWebpackPlugin }     = require('clean-webpack-plugin');
 const HTMLInlineCssWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 
+// Set js and html entry files of multiple-pages application
+const setMPA = () => {
+  const entry = {};
+  const htmlWebpackPlugins = [];
+
+  // Retrieve index.js local path
+  // eg: ['/Users/chen/webpack-studio/my-project/src/index/index.js', '/Users/chen/webpack-studio/my-project/src/react/index.js']
+  const entryFiles = glob.sync(path.join(__dirname, './src/*/index.js'));
+
+  // Retrieve entry names
+  Object.keys(entryFiles).map((index) => {
+    const entryFile             = entryFiles[index];
+    const match                 = entryFile.match(/src\/(.*)\/index\.js/);  // eg: index, react
+    const pageName              = match && match[1];
+    let htmlWebpackPluginOption = {};
+
+    entry[pageName] = entryFile;
+
+    htmlWebpackPluginOption = {
+      template: path.join(__dirname, `src/${pageName}/index.html`),  // entry point file
+      filename: `${pageName}.html`,                                  // output file
+      chunks: [pageName],                                            // entry name chunks
+      inject: true,
+      minify: {
+        html5: true,
+        collapseWhitespace: true,
+        preserveLineBreaks: false,
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: false
+      }
+    };
+
+    htmlWebpackPlugins.push(new HtmlWebpackPlugin(htmlWebpackPluginOption));
+  });
+
+  return {
+    entry,
+    htmlWebpackPlugins
+  };
+};
+
+const { entry, htmlWebpackPlugins } = setMPA();
+
 module.exports = {
   mode: 'production',
-  entry: {
-    index: './src/index/index.js',
-    search: './src/index/search.js',
-    react: './src/react/react.js'
-  },
+  entry: entry,
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name]_[chunkhash:8].js'  // apply [chunkhash] to JS files
@@ -88,38 +129,38 @@ module.exports = {
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano')
     }),
-    // html compressor - index.html
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/index/index.html'),  // entry point file
-      filename: 'index.html',  // output file
-      chunks: ['index', 'search'],  // entry name chunks
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: false,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: false
-      }
-    }),
-    // html compressor - react.html
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/react/index.html'),
-      filename: 'react.html',
-      chunks: ['react'],
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: false,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: false
-      }
-    }),
+    // // html compressor - index.html
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, 'src/index/index.html'),  // entry point file
+    //   filename: 'index.html',  // output file
+    //   chunks: ['index', 'search'],  // entry name chunks
+    //   inject: true,
+    //   minify: {
+    //     html5: true,
+    //     collapseWhitespace: true,
+    //     preserveLineBreaks: false,
+    //     minifyCSS: true,
+    //     minifyJS: true,
+    //     removeComments: false
+    //   }
+    // }),
+    // // html compressor - react.html
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, 'src/react/index.html'),
+    //   filename: 'react.html',
+    //   chunks: ['react'],
+    //   inject: true,
+    //   minify: {
+    //     html5: true,
+    //     collapseWhitespace: true,
+    //     preserveLineBreaks: false,
+    //     minifyCSS: true,
+    //     minifyJS: true,
+    //     removeComments: false
+    //   }
+    // }),
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin()
-  ]
+  ].concat(htmlWebpackPlugins)  // Dynamically append htmlWebpackPlugins
 };
 
