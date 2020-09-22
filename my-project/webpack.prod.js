@@ -129,36 +129,6 @@ module.exports = {
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano')
     }),
-    // // html compressor - index.html
-    // new HtmlWebpackPlugin({
-    //   template: path.join(__dirname, 'src/index/index.html'),  // entry point file
-    //   filename: 'index.html',  // output file
-    //   chunks: ['index', 'search'],  // entry name chunks
-    //   inject: true,
-    //   minify: {
-    //     html5: true,
-    //     collapseWhitespace: true,
-    //     preserveLineBreaks: false,
-    //     minifyCSS: true,
-    //     minifyJS: true,
-    //     removeComments: false
-    //   }
-    // }),
-    // // html compressor - react.html
-    // new HtmlWebpackPlugin({
-    //   template: path.join(__dirname, 'src/react/index.html'),
-    //   filename: 'react.html',
-    //   chunks: ['react'],
-    //   inject: true,
-    //   minify: {
-    //     html5: true,
-    //     collapseWhitespace: true,
-    //     preserveLineBreaks: false,
-    //     minifyCSS: true,
-    //     minifyJS: true,
-    //     removeComments: false
-    //   }
-    // }),
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin()
   ].concat(htmlWebpackPlugins)  // Dynamically append htmlWebpackPlugins

@@ -88,7 +88,7 @@ module.exports = {
         preset: ['default', { discardComments: { removeAll: true } }],
       },
     }),
-    // index.html
+    // html compressor - index.html
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/index/index.html'),  // entry point file
       filename: 'index.html',  // output file
@@ -103,7 +103,7 @@ module.exports = {
         removeComments: true
       }
     }),
-    // search.html
+    // html compressor - search.html
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/search/index.html'),  // entry point file
       filename: 'search.html',  // output file
