@@ -1,4 +1,5 @@
 import promise from './promise.js';
+import './index.css';
 
 promise.then((msg) => {
   console.log('This is in the then ' + msg);

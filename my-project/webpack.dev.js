@@ -1,13 +1,15 @@
 "use strict";
 
-const path                   = require('path');
-const webpack                = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path                    = require('path');
+const webpack                 = require('webpack');
+const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
+const HtmlWebpackPlugin       = require('html-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 // Single entry point file
 // module.exports = {
 //   mode: 'production',
-//   entry: './src/index.js',
+//   entry: './src/index/index.js',
 //   output: {
 //     path: path.resolve(__dirname, 'dist'),
 //     filename: 'bundle.js'
@@ -76,7 +78,21 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),  // WDS needs to work together with HotModuleReplacementPlugin to take effect
-    new CleanWebpackPlugin()                   // clear /dist folder before bundling
+    new CleanWebpackPlugin(),                  // clear /dist folder before bundling
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/index/index.html'),  // entry point file
+      filename: 'index.html',  // output file
+      chunks: ['index', 'search'],  // entry name chunks
+      inject: true,
+      minify: {
+        html5: true,
+        collapseWhitespace: true,
+        preserveLineBreaks: false,
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: true
+      }
+    })
   ],
   devServer: {             // npm i webpack-dev-server -D
     contentBase: './dist', // serving directory
