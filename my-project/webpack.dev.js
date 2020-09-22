@@ -43,7 +43,13 @@ module.exports = {
       {
         test: /\.css$/,
         use: [             // npm i style-loader css-loader -D
-          'style-loader',  // the sequence of loaders array matters
+          {
+            loader: 'style-loader',  // the sequence of loaders array matters
+            options: {
+              insert: 'head',
+              injectType: 'styleTag'
+            }
+          },
           'css-loader'     // the rule is to load the loaders from right to left, namely css-loader first, then style-loader
         ]
       },
