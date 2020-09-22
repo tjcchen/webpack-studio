@@ -10,9 +10,9 @@ const HTMLInlineCssWebpackPlugin = require('html-inline-css-webpack-plugin').def
 module.exports = {
   mode: 'production',
   entry: {
-    index: './src/index.js',
-    search: './src/search.js',
-    react: './src/react.js'
+    index: './src/index/index.js',
+    search: './src/index/search.js',
+    react: './src/react/react.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -90,7 +90,7 @@ module.exports = {
     }),
     // html compressor - index.html
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/index.html'),  // entry point file
+      template: path.join(__dirname, 'src/index/index.html'),  // entry point file
       filename: 'index.html',  // output file
       chunks: ['index', 'search'],  // entry name chunks
       inject: true,
@@ -105,7 +105,7 @@ module.exports = {
     }),
     // html compressor - react.html
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/react.html'),
+      template: path.join(__dirname, 'src/react/index.html'),
       filename: 'react.html',
       chunks: ['react'],
       inject: true,

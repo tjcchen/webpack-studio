@@ -24,9 +24,9 @@ module.exports = {
     poll: 1000               // polling to check file changes
   },
   entry: {
-    index: './src/index.js',
-    search: './src/search.js',
-    react: './src/react.js'
+    index: './src/index/index.js',
+    search: './src/index/search.js',
+    react: './src/react/react.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './footer.css';
-import './footer.less';
-import logo from './images/webpack.svg';
+// import './react.css';
+import './react.less';
+import logo from '../assets/images/webpack.svg';
 
 class ReactFooter extends React.Component{
   // please note the logo path will be relative path, relative to current .html file
