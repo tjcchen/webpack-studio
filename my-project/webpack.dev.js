@@ -1,10 +1,12 @@
 "use strict";
 
-const path                    = require('path');
-const webpack                 = require('webpack');
-const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
-const HtmlWebpackPlugin       = require('html-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const path                       = require('path');
+const webpack                    = require('webpack');
+const { CleanWebpackPlugin }     = require('clean-webpack-plugin');
+const HtmlWebpackPlugin          = require('html-webpack-plugin');
+const MiniCssExtractPlugin       = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin    = require('optimize-css-assets-webpack-plugin');
+const HTMLInlineCssWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 
 // Single entry point file
 // module.exports = {
@@ -43,20 +45,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: [             // npm i style-loader css-loader -D
-          {
-            loader: 'style-loader',  // the sequence of loaders array matters
-            options: {
-              insert: 'head',
-              injectType: 'styleTag'
-            }
-          },
+          MiniCssExtractPlugin.loader,
           'css-loader'     // the rule is to load the loaders from right to left, namely css-loader first, then style-loader
         ]
       },
       {
         test: /\.less$/,
         use: [
-          'style-loader',
+          'style-loader',  // the sequence of loaders array matters
           'css-loader',
           'less-loader'    // npm i less less-loader -D
         ]
@@ -84,7 +80,14 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),  // WDS needs to work together with HotModuleReplacementPlugin to take effect
-    new CleanWebpackPlugin(),                  // clear /dist folder before bundling
+    new MiniCssExtractPlugin(),
+    new OptimizeCSSAssetsPlugin({              // css compressor
+      assetNameRegExp: /.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorPluginOptions: {
+        preset: ['default', { discardComments: { removeAll: true } }],
+      },
+    }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/index/index.html'),  // entry point file
       filename: 'index.html',  // output file
@@ -98,7 +101,9 @@ module.exports = {
         minifyJS: true,
         removeComments: true
       }
-    })
+    }),
+    new CleanWebpackPlugin(),                  // clear /dist folder before bundling
+    new HTMLInlineCssWebpackPlugin()
   ],
   devServer: {             // npm i webpack-dev-server -D
     contentBase: './dist', // serving directory
