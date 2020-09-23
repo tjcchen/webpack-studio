@@ -53,7 +53,7 @@ const setMPA = () => {
 const { entry, htmlWebpackPlugins } = setMPA();
 
 module.exports = {
-  mode: 'none',  // change mode to none to check source map usage
+  mode: 'production',  // change mode to none to check source map usage
   entry: entry,
   output: {
     path: path.join(__dirname, 'dist'),
@@ -132,6 +132,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin()
   ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
-  devtool: 'eval'  // Set source map with 'eval' mode
+  // source map relevant settings
+  devtool: 'source-map'  // Set source map with different mode, eg: eval, source-map, inline-source-map, cheap-source-map
 };
 

@@ -10,6 +10,8 @@ class ReactFooter extends React.Component{
   // please note the logo path will be relative path, relative to current .html file
   // url-loader can make image to base64 format, while file-loader cannot, it is the difference between them
   render() {
+    // debugger;  // To test source-map
+    // a = 1;     // To test inline-source-map
     return <div className="footer-text">
       <p>React Footer Content</p>
       <img src={ logo } width="200px" height="120px" />

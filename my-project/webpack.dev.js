@@ -118,12 +118,28 @@ module.exports = {
         removeComments: true
       }
     }),
+    // html compressor - react.html
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/react/index.html'),  // entry point file
+      filename: 'react.html',  // output file
+      chunks: ['react'],  // entry name chunks
+      inject: true,
+      minify: {
+        html5: true,
+        collapseWhitespace: true,
+        preserveLineBreaks: false,
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: true
+      }
+    }),
     new CleanWebpackPlugin(),                  // clear /dist folder before bundling
     new HTMLInlineCssWebpackPlugin()
   ],
   devServer: {             // npm i webpack-dev-server -D
     contentBase: './dist', // serving directory
     hot: true              // open live reloading option
-  }
+  },
+  // devtool: 'cheap-source-map'
 };
 
