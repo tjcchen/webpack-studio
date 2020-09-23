@@ -134,18 +134,18 @@ module.exports = {
     new HTMLInlineCssWebpackPlugin(),
     // solution1: split common react and react-dom resources with external links
     new HtmlWebpackExternalsPlugin({
-      externals: [
+      externals: [  
         {
           module: 'react',
           entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
-          global: 'React',
+          global: 'React',  // window.React object becomes available
         },
         {
           module: 'react-dom',
           entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
-          global: 'ReactDOM',
-        },
-      ],
+          global: 'ReactDOM',  // window.ReactDOM object becomes available
+        }
+      ]
     })
   ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
   // source map relevant settings
