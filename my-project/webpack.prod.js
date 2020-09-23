@@ -7,6 +7,7 @@ const OptimizeCSSAssetsPlugin    = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin          = require('html-webpack-plugin');
 const { CleanWebpackPlugin }     = require('clean-webpack-plugin');
 const HTMLInlineCssWebpackPlugin = require('html-inline-css-webpack-plugin').default;
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 // Set js and html entry files of multiple-pages application
 const setMPA = () => {
@@ -130,9 +131,24 @@ module.exports = {
       cssProcessor: require('cssnano')
     }),
     new CleanWebpackPlugin(),
-    new HTMLInlineCssWebpackPlugin()
+    new HTMLInlineCssWebpackPlugin(),
+    // solution1: split common react and react-dom resources with external links
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: 'react',
+          entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
+          global: 'React',
+        },
+        {
+          module: 'react-dom',
+          entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+          global: 'ReactDOM',
+        },
+      ],
+    })
   ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
   // source map relevant settings
-  devtool: 'source-map'  // Set source map with different mode, eg: eval, source-map, inline-source-map, cheap-source-map
+  // devtool: 'source-map'  // Set source map with different mode, eg: eval, source-map, inline-source-map, cheap-source-map
 };
 
