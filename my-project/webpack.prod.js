@@ -53,7 +53,7 @@ const setMPA = () => {
 const { entry, htmlWebpackPlugins } = setMPA();
 
 module.exports = {
-  mode: 'production',
+  mode: 'none',  // change mode to none to check source map usage
   entry: entry,
   output: {
     path: path.join(__dirname, 'dist'),
@@ -120,7 +120,7 @@ module.exports = {
     ]
   },
   plugins: [
-    // css resources need to use MiniCssExtractPlugin and [contenthash], while removing style-loader
+    // css resources need to use MiniCssExtractPlugin and [contenthash] while removing style-loader
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
     }),
@@ -131,6 +131,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin()
-  ].concat(htmlWebpackPlugins)  // Dynamically append htmlWebpackPlugins
+  ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
+  devtool: 'eval'  // Set source map with 'eval' mode
 };
 
