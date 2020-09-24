@@ -30,7 +30,7 @@ const setMPA = () => {
     htmlWebpackPluginOption = {
       template: path.join(__dirname, `src/${pageName}/index.html`),  // entry point file
       filename: `${pageName}.html`,                                  // output file
-      chunks: [pageName],                                            // entry name chunks
+      chunks: ['vendors', pageName],                                            // entry name chunks
       inject: true,
       minify: {
         html5: true,
@@ -150,6 +150,7 @@ module.exports = {
   ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
   // source map relevant settings
   // devtool: 'source-map'  // Set source map with different mode, eg: eval, source-map, inline-source-map, cheap-source-map
+  // solution2: apply split-chunks-plugin to extract common resources(react|react-dom)
   optimization: {
     splitChunks: {
       cacheGroups: {
