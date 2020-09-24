@@ -133,22 +133,33 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin(),
     // solution1: split common react and react-dom resources with external links
-    new HtmlWebpackExternalsPlugin({
-      externals: [  
-        {
-          module: 'react',
-          entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
-          global: 'React',  // window.React object becomes available
-        },
-        {
-          module: 'react-dom',
-          entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
-          global: 'ReactDOM',  // window.ReactDOM object becomes available
-        }
-      ]
-    })
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: [  
+    //     {
+    //       module: 'react',
+    //       entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
+    //       global: 'React',  // window.React object becomes available
+    //     },
+    //     {
+    //       module: 'react-dom',
+    //       entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+    //       global: 'ReactDOM',  // window.ReactDOM object becomes available
+    //     }
+    //   ]
+    // })
   ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
   // source map relevant settings
   // devtool: 'source-map'  // Set source map with different mode, eg: eval, source-map, inline-source-map, cheap-source-map
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /(react|react-dom)/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
+  }
 };
 
