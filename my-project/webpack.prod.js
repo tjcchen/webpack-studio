@@ -167,11 +167,16 @@ module.exports = {
   optimization: {
     splitChunks: {
       minSize: 0,  // 'minSize = 0 byte' means splitChunsPlugin will extract all common resources
-      cacheGroups: {
-        commons: {
+      cacheGroups: {        // cacheGroups means some minor groups
+        commons: {          // common means common resources or modules
           name: 'commons',  // exporting resource name
+          chunks: 'all',    // index, search, react
+          minChunks: 2      // refer times: when refer times >= 2, splitChunksPlugin will execute the extract manipulation
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendors',
           chunks: 'all',
-          minChunks: 2  // refer times: when refer times >= 2, splitChunksPlugin will execute the extract manipulation
         }
       }
     }
