@@ -148,8 +148,10 @@ module.exports = {
     //   ]
     // })
   ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
+  
   // source map relevant settings
   // devtool: 'source-map'  // Set source map with different mode, eg: eval, source-map, inline-source-map, cheap-source-map
+  
   // solution2: apply split-chunks-plugin to extract common resources(react|react-dom)
   // optimization: {
   //   splitChunks: {
@@ -164,12 +166,12 @@ module.exports = {
   // },
   optimization: {
     splitChunks: {
-      minSize: 0,  // 'minSize = 0' means splitChunsPlugin will extract all common resources
+      minSize: 0,  // 'minSize = 0 byte' means splitChunsPlugin will extract all common resources
       cacheGroups: {
         commons: {
-          name: 'commons',
+          name: 'commons',  // exporting resource name
           chunks: 'all',
-          minChunks: 2  // refer times
+          minChunks: 2  // refer times: when refer times >= 2, splitChunksPlugin will execute the extract manipulation
         }
       }
     }

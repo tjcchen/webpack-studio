@@ -1,4 +1,5 @@
 import promise from './promise.js';
+import { common } from '../../common';
 import './index.css';
 
 promise.then((msg) => {
@@ -9,3 +10,5 @@ promise.then((msg) => {
 
 // Search.js message to html page
 document.write('<div>search.js: Webpack Search Page Content</div>');
+
+console.log(common());  // To test splitChunksPlugin to extract common module
