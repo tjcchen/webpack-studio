@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { print } from './print';
+import { common } from '../../common';
 import './index.css';
 
 function component() {
@@ -14,3 +15,5 @@ function component() {
 document.body.appendChild(component());
 
 document.write(print());  // message from print.js
+
+console.log(common());    // To test splitChunksPlugin to extract common module

@@ -2,8 +2,13 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// import common module to test splitChunksPlugin
+import { common } from '../../common';
+
 // import './react.css';
 import './react.less';
+
 import logo from '../assets/images/webpack.svg';
 
 class ReactFooter extends React.Component{
@@ -18,6 +23,8 @@ class ReactFooter extends React.Component{
     </div>;
   }
 };
+
+console.log(common());  // To test splitChunksPlugin to extract common module
 
 ReactDOM.render(
   <ReactFooter />,

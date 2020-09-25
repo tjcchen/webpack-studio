@@ -30,7 +30,7 @@ const setMPA = () => {
     htmlWebpackPluginOption = {
       template: path.join(__dirname, `src/${pageName}/index.html`),  // entry point file
       filename: `${pageName}.html`,                                  // output file
-      chunks: ['vendors', pageName],                                            // entry name chunks
+      chunks: ['commons','vendors', pageName],                                            // entry name chunks
       inject: true,
       minify: {
         html5: true,
@@ -151,13 +151,25 @@ module.exports = {
   // source map relevant settings
   // devtool: 'source-map'  // Set source map with different mode, eg: eval, source-map, inline-source-map, cheap-source-map
   // solution2: apply split-chunks-plugin to extract common resources(react|react-dom)
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       commons: {
+  //         test: /(react|react-dom)/,  // extract react and react-dom resources to vendors.js
+  //         name: 'vendors',
+  //         chunks: 'all'
+  //       }
+  //     }
+  //   }
+  // },
   optimization: {
     splitChunks: {
+      minSize: 0,  // 'minSize = 0' means splitChunsPlugin will extract all common resources
       cacheGroups: {
         commons: {
-          test: /(react|react-dom)/,
-          name: 'vendors',
-          chunks: 'all'
+          name: 'commons',
+          chunks: 'all',
+          minChunks: 2  // refer times
         }
       }
     }
