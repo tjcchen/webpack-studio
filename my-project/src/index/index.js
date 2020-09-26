@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { print } from './print';
 import { common } from '../../common';
 import './index.css';
+import '../../common/global.less';
 
 function component() {
   const element = document.createElement('div');

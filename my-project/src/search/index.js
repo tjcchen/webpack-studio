@@ -1,6 +1,7 @@
 import promise from './promise.js';
 import { common } from '../../common';
 import './index.css';
+import '../../common/global.less';
 
 promise.then((msg) => {
   console.log('This is in the then ' + msg);
