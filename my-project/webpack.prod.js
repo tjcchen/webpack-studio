@@ -54,7 +54,7 @@ const setMPA = () => {
 const { entry, htmlWebpackPlugins } = setMPA();
 
 module.exports = {
-  mode: 'production',  // change mode to none to check source map usage
+  mode: 'production',  // change mode to none to check source-map usage; production mode will enable tree-shaking functionality
   entry: entry,
   output: {
     path: path.join(__dirname, 'dist'),
