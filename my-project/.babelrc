@@ -1,6 +1,11 @@
 {
   "presets": [
-    "@babel/preset-env",  // es6
+    [
+      "@babel/preset-env",  // es6
+      {
+        "modules": false    // modules: false means babel don't do anything with the module let webpack handle it.
+      }
+    ],
     "@babel/preset-react"  // reactjs
   ]
 }
