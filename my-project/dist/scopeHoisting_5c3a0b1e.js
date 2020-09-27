@@ -167,6 +167,12 @@ __webpack_require__.r(__webpack_exports__);
 document.write(Object(_scopeHoisting__WEBPACK_IMPORTED_MODULE_1__["scopeHoisting"])());
 console.log(Object(_common__WEBPACK_IMPORTED_MODULE_0__["common"])());
 
+var exportingFunc = function exportingFunc() {
+  return 'scope hoisting exporting funcion';
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (exportingFunc);
+
 /***/ }),
 
 /***/ 24:
