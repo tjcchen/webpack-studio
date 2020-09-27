@@ -2,6 +2,7 @@
 
 const path                       = require('path');
 const glob                       = require('glob');
+// const webpack                    = require('webpack');
 const MiniCssExtractPlugin       = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin    = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin          = require('html-webpack-plugin');
@@ -54,7 +55,7 @@ const setMPA = () => {
 const { entry, htmlWebpackPlugins } = setMPA();
 
 module.exports = {
-  mode: 'production',  // change mode to none to check source-map usage; production mode will enable tree-shaking functionality
+  mode: 'none',  // change mode to none to check source-map usage; production mode will enable tree-shaking, scope-hoisting functionalities
   entry: entry,
   output: {
     path: path.join(__dirname, 'dist'),
@@ -132,6 +133,8 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin(),
+    // new webpack.optimize.ModuleConcatenationPlugin(),
+
     // solution1: split common react and react-dom resources with external links
     // new HtmlWebpackExternalsPlugin({
     //   externals: [  
