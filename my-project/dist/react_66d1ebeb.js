@@ -305,6 +305,9 @@ var ReactFooter = /*#__PURE__*/function (_React$Component) {
         _this2.setState({
           Text: Text.default
         });
+
+        console.log('Text: ', Text);
+        console.log('Text Default: ', Text.default);
       });
     } // please note the logo path will be relative path, relative to current .html file
     // url-loader can make image to base64 format, while file-loader cannot, it is the difference between them

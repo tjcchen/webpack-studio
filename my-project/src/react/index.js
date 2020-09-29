@@ -26,11 +26,14 @@ class ReactFooter extends React.Component{
       this.setState({
         Text: Text.default
       });
+
+      console.log('Text: ', Text);  // Text is a module
+      console.log('Text default: ', Text.default);  // Text.default is html tag response
     });
   }
 
-  // please note the logo path will be relative path, relative to current .html file
-  // url-loader can make image to base64 format, while file-loader cannot, it is the difference between them
+  // please note the logo path will be a relative path, relative to current .html file
+  // url-loader can make image to base64 format, while file-loader cannot. It is the difference between them
   render() {
     // debugger;  // To test source-map
     // a = 1;     // To test inline-source-map
