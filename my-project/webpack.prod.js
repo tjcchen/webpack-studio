@@ -168,6 +168,7 @@ module.exports = {
   //     }
   //   }
   // },
+
   optimization: {
     splitChunks: {
       minSize: 0,           // 'minSize = 0 byte' means splitChunsPlugin will extract all common resources
