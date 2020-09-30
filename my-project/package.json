@@ -61,6 +61,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "large-number-webpack-bundle": "^1.0.0",
     "lib-flexible": "^0.3.2",
     "lodash": "^4.17.20"
   }
