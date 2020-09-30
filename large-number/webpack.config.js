@@ -1,3 +1,7 @@
+'use strict';
+
+const TerserPlugin = require('terser-webpack-plugin');
+
 module.exports = {
   mode: 'none',
   entry: {
@@ -8,7 +12,7 @@ module.exports = {
     filename: '[name].js',
     library: 'largeNumber',
     libraryTarget: 'umd',
-    libraryExport: 'default'  // this is necessary, otherwise when you use, you need to write largeNumber.default
+    libraryExport: 'default'  // this is necessary, otherwise you need to write 'largeNumber.default' when you use
   },
   optimization: {
     minimize: true,
