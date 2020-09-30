@@ -1,5 +1,6 @@
 'use strict';
 
+const path         = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
     'large-number.min': './src/index.js'
   },
   output: {
+    path: path.join(__dirname, 'dist'),
     filename: '[name].js',
     library: 'largeNumber',
     libraryTarget: 'umd',

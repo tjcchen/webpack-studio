@@ -1,11 +1,12 @@
 {
-  "name": "large-number",
+  "name": "large-number-webpack-bundle",
   "version": "1.0.0",
-  "description": "webpack large number bundle",
+  "description": "a large number webpack bundle",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "prepublish": "webpack"
   },
   "keywords": [],
   "author": "",
