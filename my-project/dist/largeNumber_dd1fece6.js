@@ -84,18 +84,49 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
-/******/ ({
+/******/ ([
+/* 0 */,
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/***/ 10:
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _es__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
+ // import './amd';
+// import './cjs';
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0__);
+
+console.log(large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0___default.a);
+var sum = large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0___default.a.add('9999', '1');
+document.write('<br/>');
+document.write('9999 + 1: ' + sum);
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 if (false) {} else {
-  module.exports = __webpack_require__(11);
+  module.exports = __webpack_require__(12);
 }
 
 /***/ }),
-
-/***/ 11:
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -416,20 +447,5 @@ if (false) {} else {
   );
 });
 
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
-/* harmony import */ var large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0__);
-
-var sum = large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0___default()('9999', '1');
-document.write('<br/>');
-document.write('9999 + 1: ' + sum);
-
 /***/ })
-
-/******/ });
+/******/ ]);

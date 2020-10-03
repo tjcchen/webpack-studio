@@ -1,6 +1,6 @@
 {
   "name": "large-number-webpack-bundle",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a large number webpack bundle",
   "main": "index.js",
   "scripts": {
