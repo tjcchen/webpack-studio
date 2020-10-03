@@ -57,7 +57,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		6: 0
+/******/ 		3: 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -148,43 +148,61 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push([27,1]);
+/******/ 	deferredModules.push([31,1]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 27:
+/***/ 31:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
-/* harmony import */ var _scopeHoisting__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(28);
+/* harmony import */ var _promise_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(32);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(33);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _common_global_less__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+/* harmony import */ var _common_global_less__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_common_global_less__WEBPACK_IMPORTED_MODULE_3__);
 
 
-document.write(Object(_scopeHoisting__WEBPACK_IMPORTED_MODULE_1__["scopeHoisting"])());
-console.log(Object(_common__WEBPACK_IMPORTED_MODULE_0__["common"])());
 
-var exportingFunc = function exportingFunc() {
-  return 'scope hoisting exporting funcion';
-};
 
-/* harmony default export */ __webpack_exports__["default"] = (exportingFunc);
+_promise_js__WEBPACK_IMPORTED_MODULE_0__["default"].then(function (msg) {
+  console.log('This is in the then ' + msg);
+}).catch(function (msg) {
+  console.log('This is in the catch ' + msg);
+}); // Search.js message to html page
+
+document.write('<div>search.js: Webpack Search Page Content</div>');
+console.log(Object(_common__WEBPACK_IMPORTED_MODULE_1__["common"])()); // To test splitChunksPlugin to extract common module
 
 /***/ }),
 
-/***/ 28:
+/***/ 32:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scopeHoisting", function() { return scopeHoisting; });
-function scopeHoisting() {
-  return "Scope Hoisting Module";
-}
-;
+var promise = new Promise(function (resolve, reject) {
+  var a = 1 + 1;
+
+  if (a === 2) {
+    resolve('Success');
+  } else {
+    reject('Failed');
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (promise);
+
+/***/ }),
+
+/***/ 33:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ })
 

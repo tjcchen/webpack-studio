@@ -100,8 +100,13 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _es__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
- // import './amd';
-// import './cjs';
+/* harmony import */ var _amd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
+/* harmony import */ var _amd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_amd__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _cjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(14);
+/* harmony import */ var _cjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_cjs__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
 
 /***/ }),
 /* 10 */
@@ -111,9 +116,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
 /* harmony import */ var large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0__);
+// ES6 MODULE IMPORT
 
-console.log(large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0___default.a);
-var sum = large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0___default.a.add('9999', '1');
+var sum = large_number_webpack_bundle__WEBPACK_IMPORTED_MODULE_0___default()('9999', '1');
 document.write('<br/>');
 document.write('9999 + 1: ' + sum);
 
@@ -392,12 +397,6 @@ if (false) {} else {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "default", function () {
-        return add;
-      });
 
       function add(a, b) {
         let i = a.length - 1;
@@ -439,13 +438,36 @@ if (false) {} else {
 
         return ret;
       }
-      /***/
+      /* harmony default export */
 
+
+      __webpack_exports__["default"] = add;
+      /***/
     }
     /******/
     ])["default"]
   );
 });
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// AMD MODULE IMPORT
+Promise.resolve(/* AMD require */).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(11)]; (function (largeNumber) {
+  document.write('<br/>');
+  document.write('3333 + 5555: ' + largeNumber('3333', '5555'));
+}).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}).catch(__webpack_require__.oe);
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// CommonJS MODULE IMPORT
+var largeNumber = __webpack_require__(11);
+
+document.write('<br/>');
+document.write('1111 + 2222: ' + largeNumber('1111', '2222'));
 
 /***/ })
 /******/ ]);

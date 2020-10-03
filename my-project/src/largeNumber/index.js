@@ -1,3 +1,3 @@
 import './es';
-// import './amd';
-// import './cjs';
+import './amd';
+import './cjs';
