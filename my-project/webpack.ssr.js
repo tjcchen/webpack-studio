@@ -1,12 +1,13 @@
 "use strict";
 
-const path                       = require('path');
-const glob                       = require('glob');
-const MiniCssExtractPlugin       = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin    = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin          = require('html-webpack-plugin');
-const { CleanWebpackPlugin }     = require('clean-webpack-plugin');
-const HTMLInlineCssWebpackPlugin = require('html-inline-css-webpack-plugin').default;
+const path                        = require('path');
+const glob                        = require('glob');
+const MiniCssExtractPlugin        = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin     = require('optimize-css-assets-webpack-plugin');
+const HtmlWebpackPlugin           = require('html-webpack-plugin');
+const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
+const HTMLInlineCssWebpackPlugin  = require('html-inline-css-webpack-plugin').default;
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 // Set js and html entry files of multiple-pages application
 const setMPA = () => {
@@ -136,7 +137,8 @@ module.exports = {
       cssProcessor: require('cssnano')
     }),
     new CleanWebpackPlugin(),
-    new HTMLInlineCssWebpackPlugin()
+    new HTMLInlineCssWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin()
   ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
 
   optimization: {
