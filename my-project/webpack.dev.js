@@ -1,12 +1,12 @@
 "use strict";
 
-const path                       = require('path');
-const webpack                    = require('webpack');
-const { CleanWebpackPlugin }     = require('clean-webpack-plugin');
-const HtmlWebpackPlugin          = require('html-webpack-plugin');
-const MiniCssExtractPlugin       = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin    = require('optimize-css-assets-webpack-plugin');
-const HTMLInlineCssWebpackPlugin = require('html-inline-css-webpack-plugin').default;
+const path                        = require('path');
+const webpack                     = require('webpack');
+const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
+const HtmlWebpackPlugin           = require('html-webpack-plugin');
+const MiniCssExtractPlugin        = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin     = require('optimize-css-assets-webpack-plugin');
+const HTMLInlineCssWebpackPlugin  = require('html-inline-css-webpack-plugin').default;
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 // Single entry point file

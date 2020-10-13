@@ -1,13 +1,13 @@
 "use strict";
 
-const path                       = require('path');
-const glob                       = require('glob');
-const MiniCssExtractPlugin       = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin    = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin          = require('html-webpack-plugin');
-const { CleanWebpackPlugin }     = require('clean-webpack-plugin');
-const HTMLInlineCssWebpackPlugin = require('html-inline-css-webpack-plugin').default;
-const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
+const path                        = require('path');
+const glob                        = require('glob');
+const MiniCssExtractPlugin        = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin     = require('optimize-css-assets-webpack-plugin');
+const HtmlWebpackPlugin           = require('html-webpack-plugin');
+const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
+const HTMLInlineCssWebpackPlugin  = require('html-inline-css-webpack-plugin').default;
+const HtmlWebpackExternalsPlugin  = require('html-webpack-externals-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 // Set js and html entry files of multiple-pages application
