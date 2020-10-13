@@ -7,6 +7,7 @@ const HtmlWebpackPlugin          = require('html-webpack-plugin');
 const MiniCssExtractPlugin       = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin    = require('optimize-css-assets-webpack-plugin');
 const HTMLInlineCssWebpackPlugin = require('html-inline-css-webpack-plugin').default;
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 // Single entry point file
 // module.exports = {
@@ -134,11 +135,13 @@ module.exports = {
       }
     }),
     new CleanWebpackPlugin(),                  // clear /dist folder before bundling
-    new HTMLInlineCssWebpackPlugin()
+    new HTMLInlineCssWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin()
   ],
   devServer: {             // npm i webpack-dev-server -D
     contentBase: './dist', // serving directory
-    hot: true              // open live reloading option
+    hot: true,             // open live reloading option
+    stats: 'errors-only'
   },
   // devtool: 'cheap-source-map'
 };

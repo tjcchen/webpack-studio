@@ -8,6 +8,7 @@ const HtmlWebpackPlugin          = require('html-webpack-plugin');
 const { CleanWebpackPlugin }     = require('clean-webpack-plugin');
 const HTMLInlineCssWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 // Set js and html entry files of multiple-pages application
 const setMPA = () => {
@@ -135,6 +136,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin()
 
     // solution1: split common react and react-dom resources with external links
     // new HtmlWebpackExternalsPlugin({
@@ -185,6 +187,8 @@ module.exports = {
         }
       }
     }
-  }
+  },
+
+  stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
 };
 
