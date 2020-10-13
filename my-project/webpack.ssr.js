@@ -74,34 +74,43 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [            
-          MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
-      },
-      {
-        test: /\.less$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          // https://blog.jakoblind.no/postcss-webpack/
+          'isomorphic-style-loader',
           {
             loader: 'css-loader',
             options: {
               importLoaders: 1
             }
           },
-          'less-loader',
-          // apply autoprefixer to auto adding modern browers' CSS3 prefix in postcss.config.js
-          'postcss-loader',
-          {
-            loader: 'px2rem-loader',
-            options: {
-              remUnit: 75,  // 1rem = 75px
-              remPrecision: 8  // decimal point precision
-            }
-          }
+          // MiniCssExtractPlugin.loader,
+          // 'css-loader'
         ]
       },
+      // {
+      //   test: /\.less$/,
+      //   use: [
+      //     {
+      //       loader: 'ignore-loader',
+      //     },
+      //     MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         importLoaders: 1
+      //       }
+      //     },
+      //     'less-loader',
+      //     // apply autoprefixer to auto adding modern browers' CSS3 prefix in postcss.config.js
+      //     'postcss-loader',
+      //     {
+      //       loader: 'px2rem-loader',
+      //       options: {
+      //         remUnit: 75,  // 1rem = 75px
+      //         remPrecision: 8  // decimal point precision
+      //       }
+      //     }
+      //   ]
+      // },
       {  // images and fonts can use the same file-loader [hash] configuration since they are both file resources
         test: /\.(jpg|gif|svg|png|jpeg)$/,
         use: [
@@ -127,36 +136,18 @@ module.exports = {
     ]
   },
   plugins: [
-    // css resources need to use MiniCssExtractPlugin and [contenthash] while removing style-loader
-    new MiniCssExtractPlugin({
-      filename: '[name]_[contenthash:8].css'
-    }),
-    // css compressor
-    new OptimizeCSSAssetsPlugin({
-      assetNameRegExp: /.css$/g,
-      cssProcessor: require('cssnano')
-    }),
+    // // css resources need to use MiniCssExtractPlugin and [contenthash] while removing style-loader
+    // new MiniCssExtractPlugin({
+    //   filename: '[name]_[contenthash:8].css'
+    // }),
+    // // css compressor
+    // new OptimizeCSSAssetsPlugin({
+    //   assetNameRegExp: /.css$/g,
+    //   cssProcessor: require('cssnano')
+    // }),
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin()
   ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
-
-  optimization: {
-    splitChunks: {
-      minSize: 0,           // 'minSize = 0 byte' means splitChunsPlugin will extract all common resources
-      cacheGroups: {        // cacheGroups means some minor groups
-        commons: {          // common means common resources or modules
-          name: 'commons',  // exporting resource name
-          chunks: 'all',    // index, search, react
-          minChunks: 2      // refer times: when common resource refer times >= 2, splitChunksPlugin will execute the extracting manipulation
-        },
-        vendors: {
-          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        }
-      }
-    }
-  }
 };
 

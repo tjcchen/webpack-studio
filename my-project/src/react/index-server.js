@@ -1,15 +1,9 @@
 "use strict";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-// import common module to test splitChunksPlugin
-import { common } from '../../common';
-
-// import './react.css';
-import './react.less';
-
-import logo from '../assets/images/webpack.svg';
+// SSR requires CommonJS import
+const React = require('react');
+const logo  = require('../assets/images/webpack.svg');
+require('./react.css');
 
 class ReactFooter extends React.Component{
   constructor() {
@@ -35,9 +29,6 @@ class ReactFooter extends React.Component{
   // please note the logo path will be a relative path, relative to current .html file
   // url-loader can make image to base64 format, while file-loader cannot. It is the difference between them
   render() {
-    // debugger;  // To test source-map
-    // a = 1;     // To test inline-source-map
-
     const { Text } = this.state;
 
     return <div className="footer-text">
@@ -45,14 +36,10 @@ class ReactFooter extends React.Component{
         Text ? <Text /> : null
       }
       <p>React Footer Content</p>
-      <img src={ logo } width="200px" height="120px" onClick={ this.loadComponent.bind(this) } />
+      <img src={ logo.default } width="200px" height="120px" onClick={ this.loadComponent.bind(this) } />
     </div>;
   }
 };
 
-console.log(common());  // To test splitChunksPlugin to extract common module
-
-ReactDOM.render(
-  <ReactFooter />,
-  document.getElementById('root')
-);
+// SSR utilizes CommonJS exports
+module.exports = <ReactFooter />;

@@ -34,9 +34,7 @@ const renderMarkup = (str) => {
       <title>React Html Page</title>
     </head>
     <body>
-      <div id="root">1111${str}22222</div>
-      <script src="vendors-server.js"></script>
-      <script src="react-server.js"></script>
+      <div id="root">${str}</div>
     </body>
   </html>`;
 };
