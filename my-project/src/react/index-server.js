@@ -16,7 +16,9 @@ class ReactFooter extends React.Component{
 
   // Dynamically import Js resource
   loadComponent() {
-    import('./text.js').then((Text) => {  // import func return a promise object
+    console.log('todo: fix this place');
+    
+    require('./text.js').then((Text) => {  // import func return a promise object
       this.setState({
         Text: Text.default
       });

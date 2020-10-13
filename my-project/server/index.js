@@ -9,6 +9,7 @@ const express = require('express');
 const { renderToString } = require('react-dom/server');
 const SSR = require('../dist/react-server');
 const template = fs.readFileSync(path.join(__dirname, '../dist/react.html'), 'utf-8'); // convert buffer to utf-8
+const mockData = require('./data.json');
 
 const server = (port) => {
   const app = express();
@@ -29,7 +30,10 @@ const server = (port) => {
 };
 
 const renderMarkup = (str) => {
-  return template.replace('<!--HTML_PLACEHOLDER-->', str);
+  const dataStr = JSON.stringify(mockData);
+
+  return template.replace('<!--HTML_PLACEHOLDER-->', str)
+                 .replace('<!--INITIAL_DATA_PLACEHOLDER-->', `<script>window.__initial_data = ${dataStr};</script>`);
 };
 
 server(process.env.PORT || 3000);
