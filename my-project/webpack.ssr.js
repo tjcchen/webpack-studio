@@ -74,43 +74,36 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        use: [            
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.less$/,
         use: [
-          'isomorphic-style-loader',
+          {
+            loader: 'ignore-loader',
+          },
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               importLoaders: 1
             }
           },
-          // MiniCssExtractPlugin.loader,
-          // 'css-loader'
+          'less-loader',
+          // apply autoprefixer to auto adding modern browers' CSS3 prefix in postcss.config.js
+          'postcss-loader',
+          {
+            loader: 'px2rem-loader',
+            options: {
+              remUnit: 75,  // 1rem = 75px
+              remPrecision: 8  // decimal point precision
+            }
+          }
         ]
       },
-      // {
-      //   test: /\.less$/,
-      //   use: [
-      //     {
-      //       loader: 'ignore-loader',
-      //     },
-      //     MiniCssExtractPlugin.loader,
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         importLoaders: 1
-      //       }
-      //     },
-      //     'less-loader',
-      //     // apply autoprefixer to auto adding modern browers' CSS3 prefix in postcss.config.js
-      //     'postcss-loader',
-      //     {
-      //       loader: 'px2rem-loader',
-      //       options: {
-      //         remUnit: 75,  // 1rem = 75px
-      //         remPrecision: 8  // decimal point precision
-      //       }
-      //     }
-      //   ]
-      // },
       {  // images and fonts can use the same file-loader [hash] configuration since they are both file resources
         test: /\.(jpg|gif|svg|png|jpeg)$/,
         use: [
@@ -136,15 +129,15 @@ module.exports = {
     ]
   },
   plugins: [
-    // // css resources need to use MiniCssExtractPlugin and [contenthash] while removing style-loader
-    // new MiniCssExtractPlugin({
-    //   filename: '[name]_[contenthash:8].css'
-    // }),
-    // // css compressor
-    // new OptimizeCSSAssetsPlugin({
-    //   assetNameRegExp: /.css$/g,
-    //   cssProcessor: require('cssnano')
-    // }),
+    // css resources need to use MiniCssExtractPlugin and [contenthash] while removing style-loader
+    new MiniCssExtractPlugin({
+      filename: '[name]_[contenthash:8].css'
+    }),
+    // css compressor
+    new OptimizeCSSAssetsPlugin({
+      assetNameRegExp: /.css$/g,
+      cssProcessor: require('cssnano')
+    }),
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin()

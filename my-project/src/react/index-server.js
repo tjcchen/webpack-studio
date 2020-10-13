@@ -3,7 +3,7 @@
 // SSR requires CommonJS import
 const React = require('react');
 const logo  = require('../assets/images/webpack.svg');
-require('./react.css');
+require('./react.less');
 
 class ReactFooter extends React.Component{
   constructor() {
