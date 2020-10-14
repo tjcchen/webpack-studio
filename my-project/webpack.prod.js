@@ -136,7 +136,21 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin(),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin(),
+
+    // error catching mechanism
+    function() {
+      this.hooks.done.tap('done', (stats) => {
+        if (stats.compilation.errors &&
+            stats.compilation.errors.length &&
+            process.argv.indexOf('--watch') == -1
+        ) {
+          console.log('build error');
+          process.exit(1); // cast error code
+          
+        }
+      });
+    }
 
     // solution1: split common react and react-dom resources with external links
     // new HtmlWebpackExternalsPlugin({
