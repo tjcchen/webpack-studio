@@ -1,5 +1,4 @@
-"use strict";
-
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
@@ -10,17 +9,17 @@ const setMPA = () => {
 
   return {
     entry,
-    htmlWebpackPlugins
+    htmlWebpackPlugins,
   };
 };
 
 const { entry, htmlWebpackPlugins } = setMPA();
 
 module.exports = {
-  entry: entry,
+  entry,
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name]_[chunkhash:8].js'
+    filename: '[name]_[chunkhash:8].js',
   },
   module: {
     rules: [
@@ -28,14 +27,14 @@ module.exports = {
         test: /\.js$/,
         use: [
           'babel-loader',
-        ]
+        ],
       },
       {
         test: /\.css$/,
-        use: [            
+        use: [
           MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
+          'css-loader',
+        ],
       },
       {
         test: /\.less$/,
@@ -44,8 +43,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           'less-loader',
           'postcss-loader',
@@ -53,10 +52,10 @@ module.exports = {
             loader: 'px2rem-loader',
             options: {
               remUnit: 75,
-              remPrecision: 8
-            }
-          }
-        ]
+              remPrecision: 8,
+            },
+          },
+        ],
       },
       {
         test: /\.(jpg|gif|svg|png|jpeg)$/,
@@ -64,10 +63,10 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name]_[hash:8].[ext]'
-            }
-          }
-        ]
+              name: '[name]_[hash:8].[ext]',
+            },
+          },
+        ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -75,31 +74,31 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name]_[hash:8].[ext]'
-            }
-          }
-        ]
-      }
-    ]
+              name: '[name]_[hash:8].[ext]',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name]_[contenthash:8].css'
+      filename: '[name]_[contenthash:8].css',
     }),
     new CleanWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin(),
-    function() {
+    function webpackErrorPlugin() {
       this.hooks.done.tap('done', (stats) => {
-        if (stats.compilation.errors &&
-            stats.compilation.errors.length &&
-            process.argv.indexOf('--watch') == -1
+        if (stats.compilation.errors
+            && stats.compilation.errors.length
+            && process.argv.indexOf('--watch') === -1
         ) {
-          console.log('build error');
-          process.exit(1);      
+          console.log('build error'); // eslint-disable-line
+          process.exit(1);
         }
       });
-    }
+    },
   ].concat(htmlWebpackPlugins),
 
-  stats: 'errors-only'
+  stats: 'errors-only',
 };

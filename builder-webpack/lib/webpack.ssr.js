@@ -1,9 +1,8 @@
-"use strict";
-
 const merge = require('webpack-merge');
-const baseConfig = require('./webpack.base');
+const cssnano = require('cssnano');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
+const baseConfig = require('./webpack.base');
 
 const prodConfig = {
   mode: 'production',
@@ -11,21 +10,21 @@ const prodConfig = {
     rules: [
       {
         test: /\.css$/,
-        use: 'ignore-loader'
+        use: 'ignore-loader',
       },
       {
         test: /\.css$/,
-        use: 'ignore-loader'
-      }
-    ]
+        use: 'ignore-loader',
+      },
+    ],
   },
   plugins: [
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /.css$/g,
-      cssProcessor: require('cssnano')
+      cssProcessor: cssnano,
     }),
     new HtmlWebpackExternalsPlugin({
-      externals: [  
+      externals: [
         {
           module: 'react',
           entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
@@ -35,9 +34,9 @@ const prodConfig = {
           module: 'react-dom',
           entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
           global: 'ReactDOM',
-        }
-      ]
-    })
+        },
+      ],
+    }),
   ],
   optimization: {
     splitChunks: {
@@ -46,10 +45,10 @@ const prodConfig = {
         commons: {
           name: 'commons',
           chunks: 'all',
-          minChunks: 2
-        }
-      }
-    }
+          minChunks: 2,
+        },
+      },
+    },
   },
 };
 
