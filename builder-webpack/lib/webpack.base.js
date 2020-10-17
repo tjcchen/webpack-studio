@@ -6,14 +6,14 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HtmlWebpackPlugin           = require('html-webpack-plugin');
 
 const setMPA = () => {
-  const entry = {};
+  const entry              = {};
   const htmlWebpackPlugins = [];
-  const entryFiles = glob.sync(path.join(__dirname), './src/*/index.js');
+  const entryFiles         = glob.sync(path.join(__dirname), './src/*/index.js');
 
   Object.keys(entryFiles).map((index) => {
-    const entryFile = entryFiles[index];
-    const match = entryFile.match(/src\/(.*)\/index\.js/);
-    const pageName = match && match[1];
+    const entryFile             = entryFiles[index];
+    const match                 = entryFile.match(/src\/(.*)\/index\.js/);
+    const pageName              = match && match[1];
     let htmlWebpackPluginOption = {};
 
     entry[pageName] = entryFiles;
