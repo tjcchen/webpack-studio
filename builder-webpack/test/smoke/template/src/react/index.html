@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('raw-loader!./meta.html') %>
+  <title>react.html</title>
+  <script><%= require('raw-loader!babel-loader!../../node_modules/lib-flexible/flexible.js') %></script>
+</head>
+<body>
+  <div id="root"><!--HTML_PLACEHOLDER--></div>
+  <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <!--INITIAL_DATA_PLACEHOLDER-->
+</body>
+</html>

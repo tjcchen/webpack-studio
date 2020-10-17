@@ -1,0 +1,13 @@
+@font-face {
+  src: url('../assets/font/Grandstander-VariableFont_wght.ttf') format('truetype');
+  font-family: 'Grandstander-VariableFont_wght';
+}
+
+body {
+  background: #f1f1f1;
+  font-family: 'Grandstander-VariableFont_wght';
+}
+
+p {
+  font-weight: 700;
+}

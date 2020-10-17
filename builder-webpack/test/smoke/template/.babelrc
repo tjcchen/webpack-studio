@@ -1,0 +1,14 @@
+{
+  "presets": [              // presets option will import preset plugins in advance
+    [
+      "@babel/preset-env",  // es6
+      {
+        "modules": false    // modules: false means babel don't do anything with the module let webpack handle it.
+      }
+    ],
+    "@babel/preset-react"   // reactjs
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import"  // dynamic import
+  ]
+}

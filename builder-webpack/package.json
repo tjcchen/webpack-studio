@@ -14,7 +14,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "autoprefixer": "^9.8.6",
@@ -33,6 +34,7 @@
     "less": "^3.12.2",
     "less-loader": "^7.0.1",
     "mini-css-extract-plugin": "^0.11.1",
+    "my-project": "file:test/smoke/template",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss-loader": "^4.0.2",
     "px2rem-loader": "^0.1.9",
