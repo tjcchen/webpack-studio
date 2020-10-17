@@ -1,11 +1,40 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path                        = require('path');
+const glob                        = require('glob');
+const MiniCssExtractPlugin        = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const HtmlWebpackPlugin           = require('html-webpack-plugin');
 
 const setMPA = () => {
   const entry = {};
   const htmlWebpackPlugins = [];
+  const entryFiles = glob.sync(path.join(__dirname), './src/*/index.js');
+
+  Object.keys(entryFiles).map((index) => {
+    const entryFile = entryFiles[index];
+    const match = entryFile.match(/src\/(.*)\/index\.js/);
+    const pageName = match && match[1];
+    let htmlWebpackPluginOption = {};
+
+    entry[pageName] = entryFiles;
+
+    htmlWebpackPluginOption = {
+      template: path.join(__dirname, `src/${pageName}/index.html`),
+      filename: `${pageName}.html`,
+      chunks: ['commons', 'vendors', pageName],
+      inject: true,
+      minify: {
+        html5: true,
+        collapseWithspace: true,
+        preserveLineBreaks: false,
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: false
+      }
+    };
+
+    htmlWebpackPlugins.push(new HtmlWebpackPlugin(htmlWebpackPluginOption));
+  });
 
   return {
     entry,
