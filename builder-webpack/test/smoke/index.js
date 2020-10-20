@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const rimraf = require('rimraf');
 
-// find template folder by process.chdir
+// Change root folder to 'test/smoke/template' with process.chdir()
 process.chdir(path.join(__dirname, 'template'));
 
 rimraf('./dist', () => {

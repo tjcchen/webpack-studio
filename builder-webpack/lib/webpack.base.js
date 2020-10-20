@@ -5,7 +5,7 @@ const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HtmlWebpackPlugin           = require('html-webpack-plugin');
 
-// find appropriate root folder
+// Retrieve appropriate root folder, process.cwd() will return the folder path of current node's index.js
 // eg: /Users/xxx/webpack-studio/builder-webpack/test/smoke/template
 const projectRoot = process.cwd();
 
