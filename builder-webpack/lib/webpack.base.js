@@ -6,12 +6,13 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HtmlWebpackPlugin           = require('html-webpack-plugin');
 
 // find appropriate root folder
+// eg: /Users/xxx/webpack-studio/builder-webpack/test/smoke/template
 const projectRoot = process.cwd();
 
 const setMPA = () => {
   const entry              = {};
   const htmlWebpackPlugins = [];
-  const entryFiles         = glob.sync(path.join(projectRoot), './src/*/index.js');
+  const entryFiles         = glob.sync(path.join(projectRoot, './src/*/index.js'));
 
   Object.keys(entryFiles).map((index) => {
     const entryFile             = entryFiles[index];
