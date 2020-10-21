@@ -20,7 +20,7 @@ const setMPA = () => {
     const pageName              = match && match[1];
     let htmlWebpackPluginOption = {};
 
-    entry[pageName] = entryFiles;
+    entry[pageName] = entryFile;
 
     htmlWebpackPluginOption = {
       template: path.join(projectRoot, `src/${pageName}/index.html`),
@@ -42,7 +42,7 @@ const setMPA = () => {
 
   return {
     entry,
-    htmlWebpackPlugins,
+    htmlWebpackPlugins
   };
 };
 
