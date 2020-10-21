@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/_mocha",
+    "test": "istanbul cover ./node_modules/.bin/_mocha",
     "eslint": "eslint ./lib --fix"
   },
   "keywords": [],
@@ -17,6 +17,7 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
     "glob-all": "^3.2.1",
+    "istanbul": "^0.4.5",
     "mocha": "^8.2.0",
     "rimraf": "^3.0.2"
   },
