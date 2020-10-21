@@ -20,7 +20,7 @@ rimraf('./dist', () => {
     }
 
     console.log(stats.toString({ colors: true, modules: false, children: false }));
-
+  
     console.log('Webpack build succeed, begin to run test.');
 
     mocha.addFile(path.join(__dirname, 'html-test.js'));
