@@ -1,23 +1,24 @@
-const path                        = require('path');
-const glob                        = require('glob');
-const MiniCssExtractPlugin        = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
+const path = require('path');
+const glob = require('glob');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const HtmlWebpackPlugin           = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Retrieve appropriate root folder, process.cwd() will return the folder path of current node's index.js
+// Retrieve appropriate root folder,
+// process.cwd() will return the folder path of current node's index.js
 // eg: /Users/xxx/webpack-studio/builder-webpack/test/smoke/template
 const projectRoot = process.cwd();
 
 const setMPA = () => {
-  const entry              = {};
+  const entry = {};
   const htmlWebpackPlugins = [];
-  const entryFiles         = glob.sync(path.join(projectRoot, './src/*/index.js'));
+  const entryFiles = glob.sync(path.join(projectRoot, './src/*/index.js'));
 
   Object.keys(entryFiles).map((index) => {
-    const entryFile             = entryFiles[index];
-    const match                 = entryFile.match(/src\/(.*)\/index\.js/);
-    const pageName              = match && match[1];
+    const entryFile = entryFiles[index];
+    const match = entryFile.match(/src\/(.*)\/index\.js/);
+    const pageName = match && match[1];
     let htmlWebpackPluginOption = {};
 
     entry[pageName] = entryFile;
@@ -33,16 +34,16 @@ const setMPA = () => {
         preserveLineBreaks: false,
         minifyCSS: true,
         minifyJS: true,
-        removeComments: false
-      }
+        removeComments: false,
+      },
     };
 
-    htmlWebpackPlugins.push(new HtmlWebpackPlugin(htmlWebpackPluginOption));
+    return htmlWebpackPlugins.push(new HtmlWebpackPlugin(htmlWebpackPluginOption));
   });
 
   return {
     entry,
-    htmlWebpackPlugins
+    htmlWebpackPlugins,
   };
 };
 
