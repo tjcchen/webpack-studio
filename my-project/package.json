@@ -64,11 +64,13 @@
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
+    "webpack-bundle-analyzer": "^3.9.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "D": "^1.0.0",
+    "babel-polyfill": "^6.26.0",
     "fs": "0.0.1-security",
     "large-number-webpack-bundle": "^1.0.2",
     "lib-flexible": "^0.3.2",

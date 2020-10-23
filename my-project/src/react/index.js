@@ -2,13 +2,9 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-// import common module to test splitChunksPlugin
-import { common } from '../../common';
-
-// import './react.css';
-import './react.less';
-
+import { common } from '../../common'; // import common module to test splitChunksPlugin
+import './react.less'; // import './react.css';
+import 'babel-polyfill'; // add to test webpack-bundle-analyzer plugin
 import logo from '../assets/images/webpack.svg';
 
 class ReactFooter extends React.Component{

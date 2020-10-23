@@ -10,6 +10,7 @@ const HTMLInlineCssWebpackPlugin  = require('html-inline-css-webpack-plugin').de
 const HtmlWebpackExternalsPlugin  = require('html-webpack-externals-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const SpeedMeasureWebpackPlugin   = require('speed-measure-webpack-plugin');
+const { BundleAnalyzerPlugin }    = require('webpack-bundle-analyzer');
 
 // Instantiate SpeedMeasureWebpackPlugin
 const smp = new SpeedMeasureWebpackPlugin();
@@ -141,6 +142,7 @@ module.exports = smp.wrap({
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin(),
+    new BundleAnalyzerPlugin(),
 
     // error catching mechanism
     function() {
