@@ -11,6 +11,7 @@ const HtmlWebpackExternalsPlugin  = require('html-webpack-externals-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const SpeedMeasureWebpackPlugin   = require('speed-measure-webpack-plugin');
 const { BundleAnalyzerPlugin }    = require('webpack-bundle-analyzer');
+const TerserPlugin                = require('terser-webpack-plugin');
 
 // Instantiate SpeedMeasureWebpackPlugin
 const smp = new SpeedMeasureWebpackPlugin();
@@ -212,7 +213,15 @@ module.exports = smp.wrap({
           chunks: 'all',
         }
       }
-    }
+    },
+
+    // uglify js files in parallel with terser-webpack-plugin
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true
+      })
+    ]
   },
 
   stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
