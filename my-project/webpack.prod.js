@@ -9,6 +9,10 @@ const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
 const HTMLInlineCssWebpackPlugin  = require('html-inline-css-webpack-plugin').default;
 const HtmlWebpackExternalsPlugin  = require('html-webpack-externals-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const SpeedMeasureWebpackPlugin   = require('speed-measure-webpack-plugin');
+
+// Instantiate SpeedMeasureWebpackPlugin
+const smp = new SpeedMeasureWebpackPlugin();
 
 // Set js and html entry files of multiple-pages application
 const setMPA = () => {
@@ -54,7 +58,7 @@ const setMPA = () => {
 
 const { entry, htmlWebpackPlugins } = setMPA();
 
-module.exports = {
+module.exports = smp.wrap({
   mode: 'none',  // change mode to none to check source-map usage; production mode will enable tree-shaking, scope-hoisting functionalities
   entry: entry,
   output: {
@@ -203,6 +207,6 @@ module.exports = {
     }
   },
 
-  // stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
-};
+  stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
+});
 

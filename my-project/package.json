@@ -60,6 +60,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "speed-measure-webpack-plugin": "^1.3.3",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
