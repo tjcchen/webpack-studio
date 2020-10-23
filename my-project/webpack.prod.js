@@ -203,6 +203,6 @@ module.exports = {
     }
   },
 
-  stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
+  // stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
 };
 
