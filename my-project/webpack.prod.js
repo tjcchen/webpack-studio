@@ -71,6 +71,12 @@ module.exports = smp.wrap({
       {
         test: /\.js$/,
         use: [
+          {
+            loader: 'thread-loader',  // thread-loader to build loaders in parallel
+            options: {
+              workers: 3
+            }
+          },
           'babel-loader',
           'eslint-loader'
         ]
@@ -142,7 +148,7 @@ module.exports = smp.wrap({
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin(),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
 
     // error catching mechanism
     function() {
