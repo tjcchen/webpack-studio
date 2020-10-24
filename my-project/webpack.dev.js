@@ -21,7 +21,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 // Multiple output files
 module.exports = {
-  mode: 'development',     // production, development, none
+  mode: 'development',       // production, development, none
   watch: true,               // default value is false
   watchOptions: {            // watchOptions takes effect only when watch is true
     ignored: /node_modules/, // watch ignored files or folders, regular expression is supported
@@ -93,7 +93,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/index/index.html'),  // entry point file
       filename: 'index.html',  // output file
-      chunks: ['index'],  // entry name chunks
+      chunks: ['index'],       // entry name chunks
       inject: true,
       minify: {
         html5: true,
@@ -108,7 +108,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/search/index.html'),  // entry point file
       filename: 'search.html',  // output file
-      chunks: ['search'],  // entry name chunks
+      chunks: ['search'],       // entry name chunks
       inject: true,
       minify: {
         html5: true,
@@ -123,7 +123,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/react/index.html'),  // entry point file
       filename: 'react.html',  // output file
-      chunks: ['react'],  // entry name chunks
+      chunks: ['react'],       // entry name chunks
       inject: true,
       minify: {
         html5: true,

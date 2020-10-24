@@ -98,7 +98,7 @@ module.exports = {
           {
             loader: 'px2rem-loader',
             options: {
-              remUnit: 75,  // 1rem = 75px
+              remUnit: 75,     // 1rem = 75px
               remPrecision: 8  // decimal point precision
             }
           }

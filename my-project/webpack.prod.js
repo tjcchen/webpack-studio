@@ -37,7 +37,7 @@ const setMPA = () => {
     htmlWebpackPluginOption = {
       template: path.join(__dirname, `src/${pageName}/index.html`),  // entry point file
       filename: `${pageName}.html`,                                  // output file
-      chunks: ['commons','vendors', pageName],                                            // entry name chunks
+      chunks: ['commons','vendors', pageName],                       // entry name chunks
       inject: true,
       minify: {
         html5: true,
