@@ -13,6 +13,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const SpeedMeasureWebpackPlugin   = require('speed-measure-webpack-plugin');
 const { BundleAnalyzerPlugin }    = require('webpack-bundle-analyzer');
 const TerserPlugin                = require('terser-webpack-plugin');
+const AddAssetHtmlPlugin          = require('add-asset-html-webpack-plugin');
 
 // Instantiate SpeedMeasureWebpackPlugin
 const smp = new SpeedMeasureWebpackPlugin();
@@ -154,7 +155,17 @@ module.exports = smp.wrap({
 
     // load compressed resources(react|react-dom) to page
     new webpack.DllReferencePlugin({
+      context: path.join(__dirname),
       manifest: require('./build/library/library.json')
+    }),
+
+    // [IMPORTANT:] put dynamically generated htmlWebpackPlugins groups here
+    // build html web pages along with options
+    ...htmlWebpackPlugins,
+
+    // [TEMPORARY:] temp fix for adding library.dll.js to html page issue
+    new AddAssetHtmlPlugin({
+      filepath: path.resolve('./build/library/library.dll.js')
     }),
 
     // error catching mechanism
@@ -166,7 +177,6 @@ module.exports = smp.wrap({
         ) {
           console.log('build error');
           process.exit(1); // cast error code
-          
         }
       });
     }
@@ -186,7 +196,7 @@ module.exports = smp.wrap({
     //     }
     //   ]
     // })
-  ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
+  ],
   
   // source map relevant settings
   // devtool: 'source-map'  // Set source map with different mode, eg: eval, source-map, inline-source-map, cheap-source-map
@@ -235,4 +245,3 @@ module.exports = smp.wrap({
 
   stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
 });
-
