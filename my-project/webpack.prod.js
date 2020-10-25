@@ -2,6 +2,7 @@
 
 const path                        = require('path');
 const glob                        = require('glob');
+const webpack                     = require('webpack');
 const MiniCssExtractPlugin        = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin     = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin           = require('html-webpack-plugin');
@@ -151,6 +152,11 @@ module.exports = smp.wrap({
     new FriendlyErrorsWebpackPlugin(),
     // new BundleAnalyzerPlugin(),
 
+    // load compressed resources(react|react-dom) to page
+    new webpack.DllReferencePlugin({
+      manifest: require('./build/library/library.json')
+    }),
+
     // error catching mechanism
     function() {
       this.hooks.done.tap('done', (stats) => {
@@ -207,11 +213,14 @@ module.exports = smp.wrap({
           chunks: 'all',    // index, search, react
           minChunks: 2      // refer times: when common resource refer times >= 2, splitChunksPlugin will execute the extracting manipulation
         },
-        vendors: {
-          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        }
+
+        // Extracting react and react-dom functionality is conflicted with webpack.DllReferencePlugin functionality,
+        // therefore we commented it out temporarily
+        // vendors: {
+        //   test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+        //   name: 'vendors',
+        //   chunks: 'all',
+        // }
       }
     },
 
