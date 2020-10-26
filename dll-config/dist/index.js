@@ -19,7 +19,7 @@
 /*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n\n\n\n\nconsole.log('print something to the page!');\n\n//# sourceURL=webpack://dll-config/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n\n\n\nconsole.log('print something to the page!');\n\n//# sourceURL=webpack://dll-config/./src/index.js?");
 
 /***/ })
 

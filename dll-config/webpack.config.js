@@ -1,10 +1,13 @@
 "use strict";
 
-const path                   = require('path');
-const HtmlWebpackPlugin      = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin   = require('mini-css-extract-plugin');
-const CssMinimizerPlugin     = require('css-minimizer-webpack-plugin');
+const path                        = require('path');
+const webpack                     = require('webpack');
+const HtmlWebpackPlugin           = require('html-webpack-plugin');
+const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
+const MiniCssExtractPlugin        = require('mini-css-extract-plugin');
+const CssMinimizerPlugin          = require('css-minimizer-webpack-plugin');
+const HTMLInlineCssWebpackPlugin  = require('html-inline-css-webpack-plugin').default;
+const AddAssetHtmlPlugin          = require('add-asset-html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -18,6 +21,12 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        use: [
+          'babel-loader'
+        ]
+      },
+      {
         test: /\.less$/,
         use: [
           MiniCssExtractPlugin.loader,
@@ -30,6 +39,10 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css'
+    }),
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname),
+      manifest: require('./build/library-manifest.json')
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/index.html'),
@@ -45,6 +58,10 @@ module.exports = {
         removeComments: true
       }
     }),
+    new AddAssetHtmlPlugin({
+      filepath: path.resolve(__dirname, './build/library.dll.js')
+    }),
+    new HTMLInlineCssWebpackPlugin(),
     new CleanWebpackPlugin()
   ],
   optimization: {
