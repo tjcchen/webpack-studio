@@ -82,7 +82,7 @@ module.exports = {
               workers: 3
             }
           },
-          'babel-loader',
+          'babel-loader?cacheDirectory=true', // with cache enabled
           'eslint-loader'
         ]
       },
@@ -245,7 +245,8 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        parallel: true
+        parallel: true,
+        cache: true  // [deprecated]
       })
     ]
   },
