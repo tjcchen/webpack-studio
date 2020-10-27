@@ -14,7 +14,7 @@ const SpeedMeasureWebpackPlugin   = require('speed-measure-webpack-plugin');
 const { BundleAnalyzerPlugin }    = require('webpack-bundle-analyzer');
 const TerserPlugin                = require('terser-webpack-plugin');
 const HtmlWebpackTagsPlugin       = require('html-webpack-tags-plugin');
-
+const HardSourceWebpackPlugin     = require('hard-source-webpack-plugin');
 
 // Instantiate SpeedMeasureWebpackPlugin
 // usage: smp.wrap({ plugins: [] })
@@ -174,6 +174,7 @@ module.exports = {
       append: false
     }),
 
+    new HardSourceWebpackPlugin(),
     // error catching mechanism
     function() {
       this.hooks.done.tap('done', (stats) => {
