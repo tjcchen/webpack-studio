@@ -1,8 +1,37 @@
+@font-family: sans-serif;
+@font-color: #f40;
+@background-color: #f4f4f4;
+
 * { padding: 0; margin: 0; box-sizing: border-box; }
 
 body {
   width: 100vw;
   min-height: 100vh;
+  background-color: @background-color;
+  font-family: @font-family;
+  -webkit-font-smoothing: antialiased;
+}
 
-  background-color: #f4f4f4;
+body, #root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#root {
+  width: 50vw;
+  height: 50vh;
+  border-radius: 5px;
+  box-shadow: 0 20px 30px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 4vh;
+
+  .content {
+    color: @font-color;
+
+    p {
+      font-size: 20px;
+    }
+  }
 }
