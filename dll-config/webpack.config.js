@@ -16,7 +16,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: '[name]_[chunkhash:8].js',
   },
   module: {
     rules: [
@@ -38,7 +38,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: '[name]_[contenthash:8].css'
     }),
     new HtmlInlineCssWebpackPlugin(),
     new CleanWebpackPlugin(),
