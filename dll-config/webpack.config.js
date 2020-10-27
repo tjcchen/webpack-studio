@@ -6,8 +6,8 @@ const HtmlWebpackPlugin           = require('html-webpack-plugin');
 const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
 const MiniCssExtractPlugin        = require('mini-css-extract-plugin');
 const CssMinimizerPlugin          = require('css-minimizer-webpack-plugin');
-const HTMLInlineCssWebpackPlugin  = require('html-inline-css-webpack-plugin').default;
-const AddAssetHtmlPlugin          = require('add-asset-html-webpack-plugin');
+const HtmlInlineCssWebpackPlugin  = require('html-inline-css-webpack-plugin').default;
+const HtmlWebpackTagsPlugin       = require('html-webpack-tags-plugin');
 
 module.exports = {
   mode: 'development',
@@ -40,7 +40,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
+    new HtmlInlineCssWebpackPlugin(),
+    new CleanWebpackPlugin(),
     new webpack.DllReferencePlugin({
+      // __dirname refers to the directory name of the current module
+      // eg: current __dirname is /Users/chen/webpack-studio/dll-config
       context: path.join(__dirname),
       manifest: require('./build/library-manifest.json')
     }),
@@ -58,11 +62,12 @@ module.exports = {
         removeComments: true
       }
     }),
-    new AddAssetHtmlPlugin({
-      filepath: path.resolve(__dirname, './build/library.dll.js')
-    }),
-    new HTMLInlineCssWebpackPlugin(),
-    new CleanWebpackPlugin()
+    new HtmlWebpackTagsPlugin({
+      scripts: {
+        path: '../build/library.dll.js'
+      },
+      append: false
+    })
   ],
   optimization: {
     minimize: true,
