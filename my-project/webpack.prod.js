@@ -13,9 +13,11 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const SpeedMeasureWebpackPlugin   = require('speed-measure-webpack-plugin');
 const { BundleAnalyzerPlugin }    = require('webpack-bundle-analyzer');
 const TerserPlugin                = require('terser-webpack-plugin');
-const AddAssetHtmlPlugin          = require('add-asset-html-webpack-plugin');
+const HtmlWebpackTagsPlugin       = require('html-webpack-tags-plugin');
+
 
 // Instantiate SpeedMeasureWebpackPlugin
+// usage: smp.wrap({ plugins: [] })
 const smp = new SpeedMeasureWebpackPlugin();
 
 // Set js and html entry files of multiple-pages application
@@ -62,7 +64,7 @@ const setMPA = () => {
 
 const { entry, htmlWebpackPlugins } = setMPA();
 
-module.exports = smp.wrap({
+module.exports = {
   mode: 'none',  // change mode to none to check source-map usage; production mode will enable tree-shaking, scope-hoisting functionalities
   entry: entry,
   output: {
@@ -163,9 +165,13 @@ module.exports = smp.wrap({
     // build html web pages along with options
     ...htmlWebpackPlugins,
 
-    // [TEMPORARY:] temp fix for adding library.dll.js to html page issue
-    new AddAssetHtmlPlugin({
-      filepath: path.resolve('./build/library/library.dll.js')
+    new HtmlWebpackTagsPlugin({
+      tags: [{
+        path: '../build/library',
+        glob: 'library_*.dll.js',
+        globPath: path.join(__dirname, './build/library')
+      }],
+      append: false
     }),
 
     // error catching mechanism
@@ -244,4 +250,4 @@ module.exports = smp.wrap({
   },
 
   stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
-});
+};

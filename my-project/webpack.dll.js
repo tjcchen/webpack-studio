@@ -10,14 +10,14 @@ module.exports = {
     ]
   },
   output: {
-    filename: '[name].dll.js',  // todo: check contenthash problem
     path: path.resolve(__dirname, './build/library'),
-    library: '[name]' // [name] placeholder refers to entry name - 'library'
+    filename: '[name]_[chunkhash:8].dll.js',
+    library: '[name]' // [name] placeholder refers to window global name 'library'
   },
   plugins: [
     new webpack.DllPlugin({
-      name: '[name]', // todo: check hash problem
       path: path.resolve(__dirname, './build/library/[name].json'),
+      name: '[name]'
     })
   ]
 };
