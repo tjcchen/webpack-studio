@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './build/library'),
     filename: '[name]_[chunkhash:8].dll.js',
-    library: '[name]' // [name] placeholder refers to window global name 'library'
+    library: '[name]' // [name] placeholder refers to window global variable 'library'
   },
   plugins: [
     new webpack.DllPlugin({
