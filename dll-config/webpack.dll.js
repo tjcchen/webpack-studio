@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'build'),
-    filename: '[name].dll.js',
+    filename: '[name]_[chunkhash:8].dll.js',
     library: '[name]'
   },
   plugins: [

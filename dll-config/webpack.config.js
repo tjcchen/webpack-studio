@@ -63,9 +63,11 @@ module.exports = {
       }
     }),
     new HtmlWebpackTagsPlugin({
-      scripts: {
-        path: '../build/library.dll.js'
-      },
+      tags: [{
+        path: '../build',
+        glob: 'library_*.dll.js',
+        globPath: path.join(__dirname, './build')
+      }],
       append: false
     })
   ],
