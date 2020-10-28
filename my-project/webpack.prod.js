@@ -76,7 +76,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve('src'), // only resolve current 'src' directory
-        // exclude: 'node_modules',   // exclude 'node_modules', only exist one field(include|exclude) is sufficient
+        // exclude: 'node_modules',   // exclude 'node_modules'
         use: [
           {
             loader: 'thread-loader',  // thread-loader to build loaders in parallel
