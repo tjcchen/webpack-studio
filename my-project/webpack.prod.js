@@ -75,6 +75,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        include: path.resolve('src'), // only resolve current 'src' directory
         use: [
           {
             loader: 'thread-loader',  // thread-loader to build loaders in parallel
@@ -249,6 +250,17 @@ module.exports = {
         cache: true  // [deprecated]
       })
     ]
+  },
+
+  // configure how modules are resolved
+  resolve: {
+    alias: {
+      'react': path.resolve(__dirname, './node_modules/react/umd/react.production.min.js'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom/umd/react-dom.production.min.js')
+    },
+    modules: [path.resolve(__dirname, 'node_modules')], // tell webpack what directories should be searched when resolving modules
+    extensions: ['.js'],
+    mainFields: ['main']
   },
 
   stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
