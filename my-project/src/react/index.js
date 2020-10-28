@@ -42,8 +42,9 @@ class ReactFooter extends React.Component{
         Text ? <Text /> : null
       }
       <p>React Footer Content</p>
-      <img src={ neuImage } />
       <img src={ logo } width="200px" height="120px" onClick={ this.loadComponent.bind(this) } />
+      <br/>
+      <img src={ neuImage } />
     </div>;
   }
 };
