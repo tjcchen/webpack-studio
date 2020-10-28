@@ -6,6 +6,7 @@ import { common } from '../../common'; // import common module to test splitChun
 import './react.less'; // import './react.css';
 import 'babel-polyfill'; // add to test webpack-bundle-analyzer plugin
 import logo from '../assets/images/webpack.svg';
+import neuImage from '../assets/images/NEU.jpg'; // import a large image
 
 class ReactFooter extends React.Component{
   constructor() {
@@ -41,6 +42,7 @@ class ReactFooter extends React.Component{
         Text ? <Text /> : null
       }
       <p>React Footer Content</p>
+      <img src={ neuImage } />
       <img src={ logo } width="200px" height="120px" onClick={ this.loadComponent.bind(this) } />
     </div>;
   }
