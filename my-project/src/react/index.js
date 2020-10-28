@@ -51,7 +51,4 @@ class ReactFooter extends React.Component{
 
 console.log(common());  // To test splitChunksPlugin to extract common module
 
-ReactDOM.render(
-  <ReactFooter />,
-  document.getElementById('root')
-);
+ReactDOM.render(<ReactFooter />, document.getElementById('root'));

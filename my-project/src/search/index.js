@@ -2,6 +2,7 @@ import promise from './promise.js';
 import { common } from '../../common';
 import './index.css';
 import '../../common/global.less';
+import 'babel-polyfill'; // add to test webpack-bundle-analyzer plugin
 
 promise.then((msg) => {
   console.log('This is in the then ' + msg);

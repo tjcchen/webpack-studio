@@ -187,6 +187,8 @@ module.exports = {
     // new HTMLInlineCssWebpackPlugin(),
 
     new FriendlyErrorsWebpackPlugin(),
+    
+    // webpack-bundle-analyzer will create an interactive treemap visualization of the contents of all your bundles
     // new BundleAnalyzerPlugin(),
 
     // load compressed resources(react|react-dom) to page
