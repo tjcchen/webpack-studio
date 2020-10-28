@@ -15,6 +15,12 @@ const { BundleAnalyzerPlugin }    = require('webpack-bundle-analyzer');
 const TerserPlugin                = require('terser-webpack-plugin');
 const HtmlWebpackTagsPlugin       = require('html-webpack-tags-plugin');
 const HardSourceWebpackPlugin     = require('hard-source-webpack-plugin');
+const PurgeCSSPlugin              = require('purgecss-webpack-plugin');
+
+// Define PATHS.src for PurgeCSSPlugin, this path refers to 'src' directory
+const PATHS = {
+  src: path.join(__dirname, 'src')
+};
 
 // Instantiate SpeedMeasureWebpackPlugin
 // usage: smp.wrap({ plugins: [] })
@@ -153,7 +159,10 @@ module.exports = {
       cssProcessor: require('cssnano')
     }),
     new CleanWebpackPlugin(),
-    new HTMLInlineCssWebpackPlugin(),
+    
+    // extract css from files into webpages
+    // new HTMLInlineCssWebpackPlugin(),
+
     new FriendlyErrorsWebpackPlugin(),
     // new BundleAnalyzerPlugin(),
 
@@ -167,6 +176,7 @@ module.exports = {
     // build html web pages along with options
     ...htmlWebpackPlugins,
 
+    // add library.dll.js(react|react-dom) resource into webpage
     new HtmlWebpackTagsPlugin({
       tags: [{
         path: '../build/library',
@@ -176,7 +186,14 @@ module.exports = {
       append: false
     }),
 
+    // enable cache
     new HardSourceWebpackPlugin(),
+
+    // purge unused css
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
+    }),
+
     // error catching mechanism
     function() {
       this.hooks.done.tap('done', (stats) => {
@@ -264,5 +281,5 @@ module.exports = {
     mainFields: ['main']
   },
 
-  stats: 'errors-only'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
+  stats: 'normal'      // 'errors-only', 'minimal', 'none', 'normal', 'verbose(default)'
 };
