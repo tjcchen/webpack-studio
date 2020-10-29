@@ -44,7 +44,7 @@ class ReactFooter extends React.Component{
       <p>React Footer Content</p>
       <img src={ logo } width="200px" height="120px" onClick={ this.loadComponent.bind(this) } />
       <br/>
-      <img src={ neuImage } />
+      <img src={ neuImage } width="300px" height="210px" />
     </div>;
   }
 };
