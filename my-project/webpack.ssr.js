@@ -129,18 +129,24 @@ module.exports = {
     ]
   },
   plugins: [
+    // [IMPORTANT]
+    // decouple dynamically generated htmlWebpackPlugins group here
+    ...htmlWebpackPlugins,
+
     // css resources need to use MiniCssExtractPlugin and [contenthash] while removing style-loader
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
     }),
+  
     // css compressor
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano')
     }),
+
     new CleanWebpackPlugin(),
     new HTMLInlineCssWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin()
-  ].concat(htmlWebpackPlugins),  // Dynamically append htmlWebpackPlugins
+  ],
 };
 

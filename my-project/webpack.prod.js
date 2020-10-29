@@ -197,7 +197,7 @@ module.exports = {
       manifest: require('./build/library/library.json')
     }),
 
-    // [IMPORTANT:] put dynamically generated htmlWebpackPlugins groups here
+    // [IMPORTANT:] put dynamically generated htmlWebpackPlugins group here
     // build html web pages along with options
     ...htmlWebpackPlugins,
 
