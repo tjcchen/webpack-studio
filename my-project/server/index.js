@@ -24,8 +24,8 @@ const server = (port) => {
     res.status(200).send(html);
   });
 
-  app.listen(port, () => {
-    console.log('Server is running on port: ' + port);
+  app.listen(80, () => {
+    console.log('Server is running on port: ' + 80);
   });
 };
 
@@ -36,4 +36,4 @@ const renderMarkup = (str) => {
                  .replace('<!--INITIAL_DATA_PLACEHOLDER-->', `<script>window.__initial_data = ${dataStr};</script>`);
 };
 
-server(process.env.PORT || 3000);
+server(process.env.PORT || 80);
