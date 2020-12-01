@@ -10,6 +10,7 @@ const HtmlInlineCssWebpackPlugin  = require('html-inline-css-webpack-plugin').de
 const HtmlWebpackTagsPlugin       = require('html-webpack-tags-plugin');
 
 module.exports = {
+  devtool: false,
   mode: 'development',
   entry: {
     index: path.join(__dirname, './src/index.js')
